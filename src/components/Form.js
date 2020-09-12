@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({ setSearchLyric }) => {
   const [search, setSearch] = useState({
     artist: "",
     song: "",
@@ -26,6 +26,8 @@ const Form = () => {
     }
 
     setError(false);
+
+    setSearchLyric(search);
   };
 
   return (
@@ -52,6 +54,7 @@ const Form = () => {
                     />
                   </div>
                 </div>
+
                 <div className="col-md-6">
                   <div className="form-group">
                     <label>Song</label>
@@ -66,6 +69,12 @@ const Form = () => {
                   </div>
                 </div>
               </div>
+
+              {error === true ? (
+                <p className="alert alert-danger text-center p-2">
+                  All fields are required
+                </p>
+              ) : null}
 
               <button
                 type="submit"
